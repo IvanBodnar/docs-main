@@ -1,14 +1,16 @@
 site_name: docs-main
 
 theme:
-    name: united
+    name: material
 
 nav:
   - Home: index.md
   - Sections:
       - infrastructure:
           - nginx: sections/infrastructure/nginx/index.md
-          - docker: sections/infrastructure/docker/index.md
+          - docker:
+            - sections/infrastructure/docker/files-models.md
+            - sections/infrastructure/docker/commands.md
 
 extra_css:
   - css/main.css
