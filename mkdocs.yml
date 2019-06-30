@@ -8,6 +8,7 @@ nav:
   - Sections:
       - infrastructure:
           - nginx: sections/infrastructure/nginx/index.md
+          - docker: sections/infrastructure/docker/index.md
 
 extra_css:
   - css/main.css
