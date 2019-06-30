@@ -1,0 +1,16 @@
+site_name: docs-main
+
+theme:
+    name: united
+
+nav:
+  - Home: index.md
+  - Sections:
+      - infrastructure:
+          - nginx: sections/infrastructure/nginx/index.md
+
+extra_css:
+  - css/main.css
+
+markdown_extensions:
+  - codehilite
