@@ -7,12 +7,16 @@ nav:
   - Home: index.md
   - Sections:
       - infrastructure:
-          - nginx: sections/infrastructure/nginx/index.md
+          - nginx:
+              - sections/infrastructure/nginx/index.md
+              - sections/infrastructure/nginx/models.md
           - docker:
-            - sections/infrastructure/docker/files-models.md
-            - sections/infrastructure/docker/commands.md
+              - sections/infrastructure/docker/models.md
+              - sections/infrastructure/docker/commands.md
           - ansible:
               - sections/infrastructure/ansible/issues.md
+          - vagrant:
+              - sections/infrastructure/vagrant/models.md
 
 extra_css:
   - css/main.css
