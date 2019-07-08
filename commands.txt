@@ -1,0 +1,6 @@
+
+- Deploy to gh-pages
+mkdocs gh-deploy
+
+- Run developer server
+mkdocs serve
