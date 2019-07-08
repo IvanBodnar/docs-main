@@ -182,10 +182,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
     
     <label class="md-nav__link" for="nav-2">
       Sections
@@ -201,10 +203,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
     
     <label class="md-nav__link" for="nav-2-1">
       infrastructure
@@ -268,10 +272,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1-2" type="checkbox" id="nav-2-1-2">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2-1-2" type="checkbox" id="nav-2-1-2" checked>
     
     <label class="md-nav__link" for="nav-2-1-2">
       docker
@@ -287,11 +293,56 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../models.md" title="None" class="md-nav__link">
-      None
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Models
+      </label>
+    
+    <a href="./" title="Models" class="md-nav__link md-nav__link--active">
+      Models
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#python-for-postgrespostgis-dockerfile-model" title="Python for Postgres/Postgis Dockerfile model" class="md-nav__link">
+    Python for Postgres/Postgis Dockerfile model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-composeyml-model" title="docker-compose.yml Model" class="md-nav__link">
+    docker-compose.yml Model
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -421,6 +472,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#docker-composeyml-model" title="docker-compose.yml Model" class="md-nav__link">
+    docker-compose.yml Model
+  </a>
+  
+</li>
+      
       
       
       
@@ -460,6 +518,45 @@
 <span class="k">RUN</span> adduser --no-create-home user
 <span class="k">USER</span><span class="s"> user</span>
 </pre></div>
+
+
+<p><br></p>
+<h4 id="docker-composeyml-model">docker-compose.yml Model</h4>
+<div class="codehilite"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&quot;3&quot;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">app</span><span class="p">:</span>
+    <span class="nt">build</span><span class="p">:</span>
+      <span class="nt">context</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">colectivos-app</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;8000:8000&quot;</span>
+    <span class="nt">volumes</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./app:/app</span>
+    <span class="nt">command</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sh -c &quot;gunicorn project_core.wsgi:application -w 4 -b 0.0.0.0:8000 --reload&quot;</span>
+    <span class="nt">env_file</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./vars.env</span>
+    <span class="nt">depends_on</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">db</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">colectivos-network</span>
+
+  <span class="nt">db</span><span class="p">:</span>
+    <span class="nt">build</span><span class="p">:</span>
+      <span class="nt">context</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
+      <span class="nt">dockerfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Dockerfile-postgres</span>
+    <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">colectivos-db</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;5433:5432&quot;</span>
+    <span class="nt">env_file</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./vars.env</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">colectivos-network</span>
+
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">colectivos-network</span><span class="p">:</span>
+    <span class="nt">driver</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bridge</span>
+</pre></div>
                 
                   
                 
@@ -476,6 +573,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../nginx/models/" title="Models" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Models
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../commands/" title="Commands" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Commands
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
